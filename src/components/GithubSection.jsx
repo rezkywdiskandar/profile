@@ -93,19 +93,24 @@ export default function GithubSection() {
     let isMounted = true;
 
     const fetchLiveData = async () => {
-      // Multiple endpoints including CORS proxies and direct GitHub HTML scraping
+      // Working GitHub contribution endpoints
       const endpoints = [
-        { type: 'json', url: `https://github-contributions-api.johndev.co/v4/${username}?y=last` },
-        { type: 'json', url: `https://api.allorigins.win/raw?url=${encodeURIComponent(`https://github-contributions-api.johndev.co/v4/${username}?y=last`)}` },
-        { type: 'html', url: `https://corsproxy.io/?url=${encodeURIComponent(`https://github.com/users/${username}/contributions`)}` },
-        { type: 'html', url: `https://api.allorigins.win/raw?url=${encodeURIComponent(`https://github.com/users/${username}/contributions`)}` },
-        { type: 'json', url: `https://github-contributions-api.deno.dev/${username}` },
-        { type: 'json', url: `https://api.allorigins.win/raw?url=${encodeURIComponent(`https://github-contributions-api.deno.dev/${username}`)}` }
+        { type: 'json', url: `https://github-contributions-api.jogruber.de/v4/${username}?y=last` },
+        { type: 'json', url: `https://github-contributions-api.jogruber.de/v4/${username}` },
+        { type: 'json', url: `https://github-contributions.vercel.app/api/v1/${username}` }
       ];
 
       for (const endpoint of endpoints) {
         try {
-          const res = await fetch(endpoint.url, { cache: 'no-cache' });
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 6000);
+
+          const res = await fetch(endpoint.url, { 
+            cache: 'no-cache',
+            signal: controller.signal
+          });
+          clearTimeout(timeoutId);
+
           if (!res.ok) continue;
 
           let formatted = [];
@@ -124,7 +129,20 @@ export default function GithubSection() {
             }
 
             if (parsedList.length > 0) {
-              formatted = parsedList.map((item) => {
+              // Ensure chronological order
+              parsedList.sort((a, b) => (a.date > b.date ? 1 : -1));
+
+              // If full history is returned, filter to last 365 days
+              const today = new Date();
+              const startDate = new Date();
+              startDate.setDate(today.getDate() - 364);
+              const startStr = startDate.toISOString().split('T')[0];
+              const todayStr = today.toISOString().split('T')[0];
+
+              const filtered = parsedList.filter(item => item.date >= startStr && item.date <= todayStr);
+              const targetList = filtered.length >= 100 ? filtered : parsedList.slice(-365);
+
+              formatted = targetList.map((item) => {
                 const count = Number(item.count || item.contributionCount || 0);
                 let level = Number(item.level ?? item.intensity ?? 0);
                 if (!level && count > 0) {
