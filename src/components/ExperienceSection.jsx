@@ -37,7 +37,7 @@ export default function ExperienceSection() {
             </p>
           </div>
           <div className="hidden md:flex items-center gap-3">
-            <span className="text-xs font-mono text-white/50 uppercase tracking-widest mr-2">Select milestone:</span>
+            <span className="text-xs font-mono text-white/50 uppercase tracking-widest mr-2">Milestone:</span>
             {experiences.map((exp, idx) => (
               <button
                 key={exp.id}
@@ -143,30 +143,32 @@ export default function ExperienceSection() {
                 {activeExp.period} · {activeExp.duration}
               </span>
               <span className="hidden sm:inline-block text-xs text-white/40 group-hover:text-white/70 transition-colors duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] uppercase tracking-wider">
-                Archive {activeExp.number} / 03
+                Archive {activeExp.number} / 0{experiences.length}
               </span>
             </div>
           </div>
         </article>
 
         {/* Mobile/Tablet Pagination Controls */}
-        <div className="mt-6 flex items-center justify-between md:hidden">
-          <button
-            onClick={() => setActiveIndex((prev) => (prev > 0 ? prev - 1 : experiences.length - 1))}
-            className="px-4 py-2 rounded-full border border-white/20 bg-white/5 text-xs font-mono font-semibold"
-          >
-            ← Previous
-          </button>
-          <span className="font-mono text-xs text-white/60">
-            {activeExp.number} / 0{experiences.length}
-          </span>
-          <button
-            onClick={() => setActiveIndex((prev) => (prev < experiences.length - 1 ? prev + 1 : 0))}
-            className="px-4 py-2 rounded-full border border-white/20 bg-white/5 text-xs font-mono font-semibold"
-          >
-            Next →
-          </button>
-        </div>
+        {experiences.length > 1 && (
+          <div className="mt-6 flex items-center justify-between md:hidden">
+            <button
+              onClick={() => setActiveIndex((prev) => (prev > 0 ? prev - 1 : experiences.length - 1))}
+              className="px-4 py-2 rounded-full border border-white/20 bg-white/5 text-xs font-mono font-semibold"
+            >
+              ← Previous
+            </button>
+            <span className="font-mono text-xs text-white/60">
+              {activeExp.number} / 0{experiences.length}
+            </span>
+            <button
+              onClick={() => setActiveIndex((prev) => (prev < experiences.length - 1 ? prev + 1 : 0))}
+              className="px-4 py-2 rounded-full border border-white/20 bg-white/5 text-xs font-mono font-semibold"
+            >
+              Next →
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

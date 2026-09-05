@@ -82,44 +82,6 @@ export const portfolioData = {
       ],
       tags: ["Web Development", "HTML5 & CSS3", "JavaScript", "Responsive Design", "UI Implementation", "IPB University"],
       image: "/experience/experience-1.JPG"
-    },
-    {
-      id: "fintech-saas-solution",
-      number: "02",
-      period: "2021 — 2023",
-      duration: "2 Tahun",
-      type: "Senior Engineer",
-      role: "Frontend Engineer & UI Designer",
-      company: "Fintech & SaaS Solution",
-      location: "Jakarta, Indonesia",
-      summary: "Mengembangkan dashboard analitik transaksi finansial real-time, integrasi payment gateway multi-channel, serta merancang flow transaksi yang seamless dan aman.",
-      highlights: [
-        "Mengimplementasikan chart interaktif dengan rendering data real-time via WebSockets.",
-        "Merancang antarmuka checkout yang menaikkan tingkat konversi pembayaran sebesar 18%.",
-        "Membangun visualisasi data finansial berbasis Canvas dengan latensi di bawah 50ms.",
-        "Menerapkan audit kepatuhan aksesibilitas WCAG 2.1 AA di seluruh modul utama."
-      ],
-      tags: ["React.js", "TypeScript", "Tailwind CSS", "Chart.js / Canvas", "REST APIs", "WebSocket"],
-      image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1200&auto=format&fit=crop"
-    },
-    {
-      id: "creative-tech-agency",
-      number: "03",
-      period: "2020 — 2021",
-      duration: "1 Tahun",
-      type: "Agency Work",
-      role: "Junior Web Developer",
-      company: "Creative Tech Agency",
-      location: "Bandung, Indonesia",
-      summary: "Membangun website interaktif klien berskala global, integrasi headless CMS, serta memastikan responsivitas dan konsistensi lintas peramban modern.",
-      highlights: [
-        "Menyelesaikan 14+ website kustom dengan standar SEO dan performa tinggi tepat waktu.",
-        "Menerapkan micro-animations yang halus dan responsif di berbagai resolusi layar.",
-        "Mengurangi ukuran payload aset gambar rata-rata 60% menggunakan WebP conversion pipeline.",
-        "Berkolaborasi langsung dengan desainer visual untuk merealisasikan layout asimetris yang presisi."
-      ],
-      tags: ["JavaScript (ES6+)", "HTML5 / CSS3", "Tailwind CSS", "PHP / Laravel", "Headless CMS"],
-      image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop"
     }
   ],
 
