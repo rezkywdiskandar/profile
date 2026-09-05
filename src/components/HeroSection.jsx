@@ -253,16 +253,6 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
-
-      {/* Scroll Down Indicator */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2 pointer-events-none opacity-50 hover:opacity-100 transition-opacity duration-300">
-        <div className="w-5 h-8 border border-[#111114]/40 rounded-full flex justify-center p-1">
-          <div className="w-1 h-2 bg-[#111114] rounded-full animate-scroll-glide" />
-        </div>
-        <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-[#111114]/70">
-          Scroll Down
-        </span>
-      </div>
     </section>
   );
 }
